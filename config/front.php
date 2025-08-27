@@ -14,8 +14,8 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'App\Infrastructure\Auth\Identity',
-            'enableAutoLogin' => false,
-            'enableSession' => false,
+            'enableAutoLogin' => true,
+            'loginUrl' => ['auth/sign-in'],
         ],
     ],
     'runtimePath' => '@root/runtime/front',
