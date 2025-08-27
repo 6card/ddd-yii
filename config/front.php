@@ -13,7 +13,17 @@ $config = [
             'errorAction' => 'site/error',
         ],
     ],
-    'runtimePath' => '@root/runtime/front'
+    'runtimePath' => '@root/runtime/front',
+    'as access' => [
+        'class' => '\yii\filters\AccessControl',
+        'except' => ['site/login', 'site/error'],
+        'rules' => [
+            [
+                'allow' => true,
+                'roles' => ['@']
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
