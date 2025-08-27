@@ -1,0 +1,12 @@
+.vscode/
+
+/vendor
+/html
+node_modules/
+
+composer.phar
+composer.lock
+
+public_html/robots.txt
+public_html/assets/*
+public_html/uploads/*
