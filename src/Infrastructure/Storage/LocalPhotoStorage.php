@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Persistence\Storage;
+namespace App\Infrastructure\Storage;
 
 use App\Application\DTO\UploadedFileInfo;
 use App\Application\Storage\PhotoStorageInterface;

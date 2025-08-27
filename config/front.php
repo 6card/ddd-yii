@@ -12,6 +12,11 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'user' => [
+            'identityClass' => 'App\Infrastructure\Auth\Identity',
+            'enableAutoLogin' => false,
+            'enableSession' => false,
+        ],
     ],
     'runtimePath' => '@root/runtime/front',
     'as access' => [

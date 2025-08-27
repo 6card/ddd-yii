@@ -9,9 +9,7 @@ use App\Infrastructure\Persistence\Mapper\AlbumMapper;
 
 class AlbumRepository implements \App\Domain\Repository\AlbumRepositoryInterface
 {
-    public function __construct(private readonly AlbumMapper $albumMapper)
-    {
-    }
+    public function __construct(private readonly AlbumMapper $albumMapper) {}
 
     // public function get(int $id): Album
     // {

@@ -24,7 +24,7 @@ return [
         'definitions' => [
             \App\Domain\Repository\AlbumRepositoryInterface::class => \App\Infrastructure\Persistence\Repository\AlbumRepository::class,
             \App\Application\Storage\PhotoStorageInterface::class => [
-                'class' =>  \App\Infrastructure\Persistence\Storage\LocalPhotoStorage::class,
+                'class' =>  \App\Infrastructure\Storage\LocalPhotoStorage::class,
                     '__construct()' => [
                         Yii::getAlias('@uploads/photo'),
                     ],
