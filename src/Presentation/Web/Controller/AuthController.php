@@ -14,7 +14,7 @@ class AuthController extends \yii\web\Controller
         ];
     }
 
-    public function actionSingIn()
+    public function actionSignIn()
     {
         return $this->render('sign-in');
     }
