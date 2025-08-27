@@ -7,8 +7,7 @@ class AuthController extends \yii\web\Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
+            'sign-in' => [
                 'layout' => 'blank'
             ],
         ];
