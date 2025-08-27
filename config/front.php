@@ -21,7 +21,7 @@ $config = [
     'runtimePath' => '@root/runtime/front',
     'as access' => [
         'class' => '\yii\filters\AccessControl',
-        'except' => ['site/login', 'site/error'],
+        'except' => ['auth/sign-in', 'site/error'],
         'rules' => [
             [
                 'allow' => true,
