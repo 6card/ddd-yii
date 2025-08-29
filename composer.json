@@ -2,7 +2,9 @@
     "name": "6card/ddd",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Presentation\\Admin\\": "admin/src/Presentation/",
+            "App\\Presentation\\Front\\": "front/src/Presentation/"
         }
     },
     "autoload-dev": {

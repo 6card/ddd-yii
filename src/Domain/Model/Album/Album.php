@@ -179,6 +179,24 @@ final class Album
         $this->updatedAt = new \DateTimeImmutable();
     }
 
+    private function generateShareLink(): string
+    {
+        // $sig = $_GET['sig'];
+        // $secret = 'very-long-secret-key';
+        // $id = 123;
+        // $exp = time() + 3600;
+        // $data = $id . ':' . $exp;
+        // $calc = rtrim(strtr(base64_encode(hash_hmac('sha256', $data, $secret, true)), '+/', '-'), '=');
+        // if (!$this->validateHash($calc, $sig)) { http_response_code(403);}
+
+        return rtrim(strtr(base64_encode(random_bytes(18)), '+/', '-_'), '=');
+    }
+
+    private function validateHash(string $calc, string $sig): bool
+    {
+        return hash_equals($calc, $sig);
+    }
+
     // private function reindexPhotoPositions(): void
     // {
     //     $pos = 1;

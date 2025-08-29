@@ -20,6 +20,17 @@ class UserRepository implements UserRepositoryInterface
         // }
         // return $this->userMapper->toDomain($record);
 
-        return User::reconstitute(13);
+        return User::reconstitute(13, "vk_31@mail.ru", "1a1dc91c907325c69271ddf0c944bc72");
+    }
+
+    public function findByEmail(string $email): ?User
+    {
+        // $record = UserActiveRecord::find($id)->where(['email' => $email])->one();
+        // if (!$record) {
+        //     return null;
+        // }
+        // return $this->userMapper->toDomain($record);
+
+        return User::reconstitute(13, "vk_31@mail.ru", "1a1dc91c907325c69271ddf0c944bc72");
     }
 }

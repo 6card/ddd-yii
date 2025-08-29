@@ -1,0 +1,30 @@
+nav.navbar.is-fixed-top.is-top {
+    background-color: transparent;
+    color: #000000;
+    position: absolute;
+}
+
+nav.navbar.is-fixed-top.is-top a.navbar-item{
+    color: #000000;
+}
+
+nav.navbar.is-fixed-top.is-top .navbar-link:focus,
+nav.navbar.is-fixed-top.is-top .navbar-link:focus-within,
+nav.navbar.is-fixed-top.is-top .navbar-link:hover,
+nav.navbar.is-fixed-top.is-top a.navbar-item:focus,
+nav.navbar.is-fixed-top.is-top a.navbar-item:focus-within,
+nav.navbar.is-fixed-top.is-top a.navbar-item:hover,
+nav.navbar.is-fixed-top.is-top .navbar-link:active,
+nav.navbar.is-fixed-top.is-top a.navbar-item:active {
+    background: none;
+    text-decoration: underline;
+}
+
+
+img.lazyload.finish {
+    opacity: 1;
+    transition: 2s;
+}
+img.lazyload {
+    opacity: 0;
+}

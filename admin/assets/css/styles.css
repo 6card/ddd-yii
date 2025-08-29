@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.main.container {
+    padding: 2em 0em 7em;
+}
+
+.field .help-block {
+    font-size: .8rem;
+}
+
+.field.error .help-block {
+    color: #9F3A38;
+}
