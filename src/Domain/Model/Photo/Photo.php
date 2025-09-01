@@ -2,19 +2,19 @@
 
 namespace App\Domain\Model\Photo;
 
-use App\Domain\Model\Album\Album;
 use DateTimeImmutable;
 
 final class Photo
 {
-    private ?int $id = null;
+    private ?int $id;
     private string $filename;
     private string $url;
     private DateTimeImmutable $createdAt;
     private DateTimeImmutable $updatedAt;
 
-    private function __construct(string $filename, string $url, ?DateTimeImmutable $createdAt = null, ?DateTimeImmutable $updatedAt = null)
+    private function __construct(?int $id, string $filename, string $url, ?DateTimeImmutable $createdAt = null, ?DateTimeImmutable $updatedAt = null)
     {
+        $this->id = $id;
         $this->filename = $filename;
         $this->url = $url;
         $this->createdAt = $createdAt ?? new \DateTimeImmutable();
@@ -23,7 +23,7 @@ final class Photo
 
     public static function create(string $filename, string $url)
     {
-        return new self($filename, $url);
+        return new self(null, $filename, $url);
     }
 
     public function update(string $filename, string $url)
@@ -34,8 +34,7 @@ final class Photo
 
     public static function reconstitute(int $id, string $filename, string $url, DateTimeImmutable $createdAt, DateTimeImmutable $updatedAt): self
     {
-        $photo = new self($filename, $url, $createdAt, $updatedAt);
-        $photo->setId($id);
+        $photo = new self($id, $filename, $url, $createdAt, $updatedAt);
 
         return $photo;
     }
@@ -58,14 +57,6 @@ final class Photo
     public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
-    }
-
-    public function setId(int $id): void
-    {
-        if ($this->id !== null) {
-            throw new \LogicException('ID уже установлен.');
-        }
-        $this->id = $id;
     }
 
     public function getId(): ?int {

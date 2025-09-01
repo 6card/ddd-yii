@@ -48,8 +48,23 @@ class AlbumMapper
         $record->created_at = $album->getCreatedAt()->getTimestamp();
         $record->updated_at = $album->getUpdatedAt()->getTimestamp();
 
-        $activeRecordPhotos = array_map([$this, 'toPhotoActiveRecord'], $album->getPhotos());
-        $record->populateRelation('photos', $activeRecordPhotos);
+        $existingActiveRecordPhotos = [];
+        foreach ($record->photos as $photoActiveRecord) {
+            $existingActiveRecordPhotos[$photoActiveRecord->id] = $photoActiveRecord;
+        }
+
+        $newActiveRecordPhotos = [];
+        foreach ($album->getPhotos() as $photo) {
+            $activeRecordPhoto = $existingActiveRecordPhotos[$photo->getId()] ?? new PhotoActiveRecord();
+            $activeRecordPhoto->filename = $photo->getFilename();
+            $activeRecordPhoto->url = $photo->getUrl();
+            $activeRecordPhoto->created_at = $photo->getCreatedAt()->getTimestamp();
+            $activeRecordPhoto->updated_at = $photo->getUpdatedAt()->getTimestamp();
+            $newActiveRecordPhotos[] = $activeRecordPhoto;
+        }
+
+        // $activeRecordPhotos = array_map([$this, 'toPhotoActiveRecord'], $album->getPhotos());
+        $record->populateRelation('photos', $newActiveRecordPhotos);
 
         return $record;
     }

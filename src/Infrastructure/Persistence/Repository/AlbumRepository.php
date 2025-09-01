@@ -33,10 +33,6 @@ class AlbumRepository implements \App\Domain\Repository\AlbumRepositoryInterface
             throw new \RuntimeException('Failed to save album record: ' . json_encode($record->getErrors()));
         }
 
-        if ($album->getId() === null) {
-            $album->setId($record->id); // Обновляем ID доменной модели после сохнанения
-        }
-
         $currentPhotoIds = []; // сюда сохраняем ID всех фотографий в альбоме
         foreach ($record->photos as $recordPhoto) {
 
@@ -51,7 +47,7 @@ class AlbumRepository implements \App\Domain\Repository\AlbumRepositoryInterface
         }
         $photosToDeleteIds = array_diff($existingActiveRecordPhotoIds, $currentPhotoIds); // выясняем какие фоторграфии удалены
         if (!empty($photosToDeleteIds)) {
-            PhotoActiveRecord::deleteAll(['id' => $photosToDeleteIds, 'album_id' => $album->getId()]);
+            PhotoActiveRecord::deleteAll(['id' => $photosToDeleteIds, 'album_id' => $record->id]);
         }
 
         return $this->albumMapper->toDomain($record);

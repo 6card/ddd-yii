@@ -129,15 +129,6 @@ final class Album
         throw new \DomainException('Photo with ID ' . $photoId . ' not found in album.');
     }
 
-    // Метод для установки ID после сохранения в репозитории
-    public function setId(int $id): void
-    {
-        if ($this->id !== null) {
-            throw new \LogicException('Album ID cannot be changed once set.');
-        }
-        $this->id = $id;
-    }
-
     private function reindexPhotos(): void
     {
         $this->photos = array_values($this->photos); // переиндексация массива
