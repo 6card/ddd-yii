@@ -10,7 +10,9 @@ class UserMapper
     public function toDomain(UserActiveRecord $record): User
     {
         return User::reconstitute(
-            $record->id
+            $record->id,
+            $record->email,
+            $record->password_hash,
         );
     }
 

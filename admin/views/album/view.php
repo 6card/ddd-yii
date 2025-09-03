@@ -2,10 +2,12 @@
 
 use yii\web\View;
 use App\Domain\Model\Album\Album;
+use App\Domain\Model\Share\Share;
 use yii\helpers\Html;
 
 /** @var View $this */
 /** @var Album $album */
+/** @var Share[] $shares */
 /** @var AddPhotosForm $form */
 
 $this->title = (string)$album->getTitle();
@@ -49,6 +51,24 @@ $this->title = (string)$album->getTitle();
                     <tr>
                         <td>Updated at</td>
                         <td data-label="Title"><?= Html::encode($album->getUpdatedAt()->format('d.m.Y H:i:s')) ?></td>
+                    </tr>
+                    <?php foreach ($shares as $share) : ?>
+                    <tr>
+                        <td>Share link</td>
+                        <td data-label="Share link"><?= Html::encode($share->getUuid()->value()) . " " . Html::a(Html::tag("i", "", ['class' => 'delete icon']), ['share/remove', 'albumId' => $share->getAlbumId()], [
+                            'class' => 'ui icon circular negative tertiary button',
+                            'data' => [
+                                'method' => 'post',
+                                'params' => [
+                                    'id' => $share->getId(),
+                                ],
+                            ],
+                        ]) ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td></td>
+                        <td><?= Html::a("add link", ['share/create', 'albumId' => $album->getId()]) ?></td>
                     </tr>
                 </tbody>
             </table>

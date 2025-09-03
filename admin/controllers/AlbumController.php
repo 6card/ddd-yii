@@ -12,6 +12,7 @@ use App\Application\DTO\UploadedFileInfo;
 use App\Application\Handler\CreateAlbumHandler;
 use App\Application\Service\AlbumService;
 use App\Domain\Repository\AlbumRepositoryInterface;
+use App\Domain\Repository\ShareRepositoryInterface;
 use App\Infrastructure\Persistence\Mapper\AlbumMapper;
 use App\Infrastructure\Persistence\Repository\AlbumRepository;
 use App\Presentation\Admin\Form\AddPhotosForm;
@@ -26,11 +27,13 @@ use yii\web\UploadedFile;
 class AlbumController extends \yii\web\Controller
 {
     private readonly AlbumRepositoryInterface $albums;
+    private readonly ShareRepositoryInterface $shares;
     private readonly AlbumService $albumService;
 
-    public function __construct($id, $module, AlbumRepositoryInterface $albums, AlbumService $albumService, $config = [])
+    public function __construct($id, $module, AlbumRepositoryInterface $albums, ShareRepositoryInterface $shares, AlbumService $albumService, $config = [])
     {
         $this->albums = $albums;
+        $this->shares = $shares;
         $this->albumService = $albumService;
         parent::__construct($id, $module, $config);
     }
@@ -69,7 +72,11 @@ class AlbumController extends \yii\web\Controller
             throw new NotFoundHttpException();
         }
         $form = new AddPhotosForm($album);
-        return $this->render('view', ['album' => $album, 'form' => $form ]);
+        return $this->render('view', [
+            'album' => $album,
+            'shares' => $this->shares->findByAlbumId($album->getId()),
+            'form' => $form
+        ]);
     }
 
     public function actionUpdate($id)

@@ -24,6 +24,7 @@ return [
         'definitions' => [
             \App\Domain\Repository\AlbumRepositoryInterface::class => \App\Infrastructure\Persistence\Repository\AlbumRepository::class,
             \App\Domain\Repository\UserRepositoryInterface::class => \App\Infrastructure\Persistence\Repository\UserRepository::class,
+            \App\Domain\Repository\ShareRepositoryInterface::class => \App\Infrastructure\Persistence\Repository\ShareRepository::class,
             \App\Application\Storage\PhotoStorageInterface::class => [
                 'class' =>  \App\Infrastructure\Storage\LocalPhotoStorage::class,
                     '__construct()' => [
